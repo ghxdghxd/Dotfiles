@@ -1,0 +1,74 @@
+<snippet>
+	<content><![CDATA[
+import subprocess
+
+version = ${1:version}
+
+def get_args3():
+    """Get arguments from commond line."""
+    try:
+        import argparse as ap
+    except ImportError as imerr:
+        print("\033[1;31m" + str(imerr) + " \033[0m")
+        sys.exit()
+
+    parser = ap.ArgumentParser(prog="${2:prog}",
+                               usage="%(prog)s",
+                               fromfile_prefix_chars='@',
+                               description=__doc__,
+                               formatter_class=ap.RawTextHelpFormatter)
+    parser.add_argument('-v', '--version',
+                        action='version',
+                        version="%(prog)s " + version)
+
+    parser.add_argument()
+
+    group = parser.add_argument_group("${3:group_name}")
+    group.add_argument()
+    clustered_group = parser.add_argument_group("Clustered arguments")
+    clustered_group.add_argument("--qsub",
+                                 action="store_true",
+                                 default=False,
+                                 dest="qsub",
+                                 help="run in cluster [False]")
+    clustered_group.add_argument("-n",
+                                 metavar="INT",
+                                 dest="node_number",
+                                 type=str,
+                                 help="number of nodes [1]")
+    clustered_group.add_argument("--nodes",
+                                 metavar="STR",
+                                 dest="node",
+                                 type=str,
+                                 help="name of nodes (e.g: n1,n2,...)")
+
+    if len(sys.argv)==1:
+        parser.print_help()
+        sys.exit()
+    else:
+        check_dependencies(["${3:tools}"])
+        args = parser.parse_args()
+        return args
+
+
+def check_dependencies(tools):
+    """Ensure required tools are present."""
+    if not isinstance(tools, list):
+        tools = [tools]
+    try:
+        for tool in tools:
+            try:
+                subprocess.check_output(["which", tool]).strip()
+            except subprocess.CalledProcessError:
+                print("\033[1;31m" + __file__ + " requires " +
+                      tool + "\033[0m")
+    except:
+        sys.exit()
+
+args = get_args3()
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>getargs3</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.python</scope>
+</snippet>

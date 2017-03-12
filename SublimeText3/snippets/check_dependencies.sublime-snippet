@@ -1,0 +1,25 @@
+<snippet>
+    <content><![CDATA[
+import subprocess
+
+def check_dependencies(tools):
+    """Ensure required tools are present."""
+    if not isinstance(tools, list):
+        tools = [tools]
+    try:
+        for tool in tools:
+            try:
+                subprocess.check_output(["which", tool]).strip()
+            except subprocess.CalledProcessError:
+                print("\033[1;31m" + __file__ + " requires " +
+                      tool + "\033[0m")
+    except:
+        sys.exit()
+
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>check</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>
