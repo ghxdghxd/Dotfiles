@@ -3,7 +3,7 @@
 # @Date    : 2017-03-12 14:33:15
 
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME="best"
@@ -63,10 +63,7 @@ alias df=' df -h'
 alias dh=' du -h'
 alias da=' du -sh'
 alias d1=' du -h --max-depth=1'
-# ssh
-alias xx='ssh -qTfnN -D 7070 qyli@computerome.cbs.dtu.dk'
-alias mhpc='sshfs -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 jintao@59.77.18.162:/home/jintao ~/hpc '
-alias mgate='sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 jintao@121.192.180.20:/home/jintao /home/g/gate'
+
 # other
 alias less='less -S'
 alias scpr='rsync -vPe ssh'
@@ -127,6 +124,16 @@ function line {
     else
         paste -s -d $1 $2
     fi
+}
+
+# what I want to learn
+function h()
+{
+printf '%-3s : %s\n' "lx" "sort by extension"
+printf '%-3s : %s\n' "lss" "sort by size"
+printf '%-3s : %s\n' "lt" "sort by modification time, newest first"
+printf '%-3s : %s\n' "ltr" "sort by modification time, oldest first"
+printf '%-3s : %s\n' "lv" "sort by numbers within text"
 }
 
 
