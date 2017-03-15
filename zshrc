@@ -138,6 +138,20 @@ printf '%-3s : %s\n' "lv" "sort by numbers within text"
 
 
 # PATH
+# Only display echos from profile.d scripts if we are no login shell
+# # and interactive - otherwise just process them to set envvars
+for i in /etc/profile.d/*.sh; do
+    if [ -r "$i"  ]; then
+        if [ "$PS1"  ]; then
+            . "$i"
+        else
+            . "$i" >/dev/null 2>&1
+        fi
+    fi
+done
+unset i
+
+
 export PATH="/opt/node-v6.9.1-linux-x64/bin:/opt/phantomjs-2.1.1-linux-x86_64/bin:/opt/R-3.3.2/bin:/opt/anaconda3/bin:/opt/jdk1.8.0_121/bin:$PATH"
 
 # export MANPATH="/usr/local/man:$MANPATH"
