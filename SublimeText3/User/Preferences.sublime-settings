@@ -1,0 +1,22 @@
+{
+	"color_scheme": "Packages/User/Monokai Bright (Flake8Lint).tmTheme",
+	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": false,
+	"fade_fold_buttons": false,
+	"font_face": "YaHei Consolas Hybrid",
+	"font_size": 18,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"margin": 4,
+	"rulers":
+	[
+		80
+	],
+	"tab_size": 4,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": true,
+	"wrap_width": 80
+}
