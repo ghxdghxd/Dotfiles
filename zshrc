@@ -35,7 +35,8 @@ alias ll=' ls -l'
 alias lss=' ls -lS'     # sort by file size
 alias lt=' ls -lt'      # sort by modification time, newest first
 alias ltr=' ls -ltr'    # sort by modification time, oldest first
-alias lv=' ls -lv'       # sort by numbers within text
+alias lv=' ls -lv'      # sort by numbers within text
+alias lx=' ls -lXB'      # sort by extension
 # cd
 alias cd=' cd'
 alias ..=' cd ..; ls'
@@ -63,7 +64,10 @@ alias df=' df -h'
 alias dh=' du -h'
 alias da=' du -sh'
 alias d1=' du -h --max-depth=1'
-
+# ssh
+alias xx='ssh -qTfnN -D 7070 qyli@computerome.cbs.dtu.dk'
+alias mhpc='sshfs -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 jintao@59.77.18.162:/home/jintao ~/hpc '
+alias mgate='sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 jintao@121.192.180.20:/home/jintao /home/g/gate'
 # other
 alias less='less -S'
 alias scpr='rsync -vPe ssh'
@@ -109,6 +113,7 @@ function col {
     echo $1,$2
     ll $1 | awk '{print $"'$2'"}'
 }
+
 # print the column number of a file
 function ncol {
     if [[ -f $1 ]]; then
@@ -117,7 +122,8 @@ function ncol {
         awk -F "$1" '{print NF}' $2 |less
     fi
 }
-# mutilple rows 2 a line
+
+# mutilple lines to one line
 function line {
     if [[ -f $1 ]]; then
         paste -s $1
@@ -126,9 +132,17 @@ function line {
     fi
 }
 
+# print file like a table
+function table {
+    if [[ -f $1 ]]; then
+        column -t $1|less -N
+    else
+        column -t -s $1 $2|less -N
+    fi
+}
+
 # what I want to learn
-function h()
-{
+function h {
 printf '%-3s : %s\n' "lx" "sort by extension"
 printf '%-3s : %s\n' "lss" "sort by size"
 printf '%-3s : %s\n' "lt" "sort by modification time, newest first"
@@ -136,26 +150,11 @@ printf '%-3s : %s\n' "ltr" "sort by modification time, oldest first"
 printf '%-3s : %s\n' "lv" "sort by numbers within text"
 }
 
-
 # PATH
-# Only display echos from profile.d scripts if we are no login shell
-# # and interactive - otherwise just process them to set envvars
-for i in /etc/profile.d/*.sh; do
-    if [ -r "$i"  ]; then
-        if [ "$PS1"  ]; then
-            . "$i"
-        else
-            . "$i" >/dev/null 2>&1
-        fi
-    fi
-done
-unset i
-
-
-export PATH="/opt/node-v6.9.1-linux-x64/bin:/opt/phantomjs-2.1.1-linux-x86_64/bin:/opt/R-3.3.2/bin:/opt/anaconda3/bin:/opt/jdk1.8.0_121/bin:$PATH"
+export PATH="/opt/R-3.4.0/bin:$HOME/anaconda3/bin:/opt/jdk1.8.0_121/bin:$PATH"
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export RSTUDIO_WHICH_R="/opt/R-3.3.1/bin/R"
+export RSTUDIO_WHICH_R="/opt/R-3.4.0/bin/R"
 source $ZSH/oh-my-zsh.sh
 
 
