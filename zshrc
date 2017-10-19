@@ -65,8 +65,8 @@ alias dh=' du -h'
 alias da=' du -sh'
 alias d1=' du -h --max-depth=1'
 # ssh
-alias mhpc='sshfs -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/hpc '
-alias mgate='sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/gate'
+alias mhpc='sshfs -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/service/hpc '
+alias mgate='sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/service/gate'
 # other
 alias less='less -S'
 alias scpr='rsync -vPe ssh'
