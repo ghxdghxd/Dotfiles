@@ -1,6 +1,6 @@
 # @Author  : Jintao Guo
 # @Email   : guojt-4451@163.com
-# @Date    : 2017-03-12 14:33:15
+# @Date    : 2017-10-19 14:33:15
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
@@ -65,9 +65,8 @@ alias dh=' du -h'
 alias da=' du -sh'
 alias d1=' du -h --max-depth=1'
 # ssh
-alias xx='ssh -qTfnN -D 7070 qyli@computerome.cbs.dtu.dk'
-alias mhpc='sshfs -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 jintao@59.77.18.162:/home/jintao ~/hpc '
-alias mgate='sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 jintao@121.192.180.20:/home/jintao /home/g/gate'
+alias mhpc='sshfs -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/hpc '
+alias mgate='sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/gate'
 # other
 alias less='less -S'
 alias scpr='rsync -vPe ssh'
@@ -75,7 +74,7 @@ alias pwd=' pwd -P'
 
 #
 alias http='python -m SimpleHTTPServer 8989'
-alias nbserver='ipython notebook --profile=nbserver'
+alias jupyter='jupyter notebook'
 alias httpy='python -m SimpleHTTPServer'
 
 alias p=' ps aux | grep'
@@ -151,7 +150,7 @@ printf '%-3s : %s\n' "lv" "sort by numbers within text"
 }
 
 # PATH
-export PATH="/opt/R-3.4.0/bin:$HOME/anaconda3/bin:/opt/jdk1.8.0_121/bin:$PATH"
+export PATH=$PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
 export RSTUDIO_WHICH_R="/opt/R-3.4.0/bin/R"
