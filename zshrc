@@ -150,10 +150,10 @@ printf '%-3s : %s\n' "lv" "sort by numbers within text"
 }
 
 # PATH
-export PATH=$PATH
+#export PATH=
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export RSTUDIO_WHICH_R="/opt/R-3.4.0/bin/R"
+
 source $ZSH/oh-my-zsh.sh
 
 
