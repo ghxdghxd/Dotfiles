@@ -1,8 +1,8 @@
 <snippet>
 	<content><![CDATA[
-import subprocess
 
-version = ${1:version}
+__version__ = "%(prog)s "
+import subprocess
 
 def get_args3():
     """Get arguments from commond line."""
@@ -12,16 +12,19 @@ def get_args3():
         print("\033[1;31m" + str(imerr) + " \033[0m")
         sys.exit()
 
-    parser = ap.ArgumentParser(prog="${2:prog}",
-                               usage="%(prog)s",
-                               fromfile_prefix_chars='@',
+    parser = ap.ArgumentParser(fromfile_prefix_chars='@',
                                description=__doc__,
                                formatter_class=ap.RawTextHelpFormatter)
     parser.add_argument('-v', '--version',
                         action='version',
-                        version="%(prog)s " + version)
+                        version=__version__)
 
-    parser.add_argument()
+    parser.add_argument("-${1:short_name}",
+                        "-${2:long_name}"
+                        metavar="",
+                        dest="",
+                        required=True,
+                        help="")
 
     group = parser.add_argument_group("${3:group_name}")
     group.add_argument()
@@ -46,24 +49,28 @@ def get_args3():
         parser.print_help()
         sys.exit()
     else:
-        check_dependencies(["${3:tools}"])
         args = parser.parse_args()
+	check_dependencies(["${3:tools}"])
         return args
 
 
 def check_dependencies(tools):
-    """Ensure required tools are present."""
-    if not isinstance(tools, list):
+    """Ensure required tools are present.
+    """
+    print("Checking required dependencies......")
+    if isinstance(tools, list):
+        pass
+    else:
         tools = [tools]
-    try:
-        for tool in tools:
-            try:
-                subprocess.check_output(["which", tool]).strip()
-            except subprocess.CalledProcessError:
-                print("\033[1;31m" + __file__ + " requires " +
-                      tool + "\033[0m")
-    except:
-        sys.exit()
+    for t in tools:
+        subp = subprocess.Popen(["which", t], stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+        if subp.stderr.read():
+            # raise OSError("\n\033[1;31m" + "OSError: \033[1;33m" + __file__ + " requires " + tools + "\033[0m\n")
+            print("\033[1;31m" + "OSError: \033[1;33m" + __file__ + " requires " + t + "\033[0m")
+            sys.exit()
+        else:
+            print(subp.stdout.read().strip())
+
 
 args = get_args3()
 ]]></content>

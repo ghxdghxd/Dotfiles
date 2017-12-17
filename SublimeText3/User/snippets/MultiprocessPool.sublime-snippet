@@ -3,7 +3,8 @@
 import multiprocessing
 
 pool = multiprocessing.Pool(processes=int(${1:processNumber}))
-pool.apply_async(${2:defName},(${3:self}))
+result = []
+result.append(pool.apply_async(${2:defName},(${3:self})))
 pool.close()
 pool.join()
 

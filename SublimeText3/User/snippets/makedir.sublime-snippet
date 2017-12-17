@@ -3,22 +3,20 @@
 import os
 
 def makedir(new_dir, exist_dir=None):
-    """Make a directory.
-
-    If it doesn't exist, handling concurrent race conditions.
+    """Make a directory. If it doesn't exist, handling concurrent race conditions.
     """
     if exist_dir:
         new_dir = os.path.join(exist_dir, new_dir)
     if os.path.exists(new_dir):
-        print "The " + new_dir + " is already exist"
+        print("The " + new_dir + " is already exist")
     else:
-        print "Make " + new_dir
+        print("Make " + new_dir)
         os.makedirs(new_dir)
 
 
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>mkdir</tabTrigger>
+    <tabTrigger>makedir</tabTrigger>
     <!-- Optional: Set a scope to limit where the snippet will trigger -->
     <scope>source.python</scope>
 </snippet>
