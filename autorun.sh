@@ -4,18 +4,20 @@ set -o nounset                              # Treat unset variables as an error
 
 #sshfs
 
-ping -c1 -W1 $ip1 &> /dev/null
+ping -c1 -W1 `grep -A1 "Host l" ~/.ssh/config|sed 1d|cut -d ' ' -f 2` &> /dev/null
 if [ "$?" = "0" ]; then
-sshfs -p $port -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $user@$ip1:~ ~/service/gate
+sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 \
+l:/home/`grep -A2 "Host l" ~/.ssh/config|sed 1,2d|cut -d ' ' -f 2` ~/service/gate
 fi
 
-ping -c1 -W1 $ip2 &> /dev/null
+ping -c1 -W1 `grep -A1 "Host a" ~/.ssh/config|sed 1d|cut -d ' ' -f 2` &> /dev/null
 if [ "$?" = "0" ]; then
-sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $user@$ip1:~ ~/service/hpc
+sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 \
+a:/home/`grep -A2 "Host l" ~/.ssh/config|sed 1,2d|cut -d ' ' -f 2` ~/service/hpc
 fi
 
-ping -c1 -W1 192.168.11.1 &> /dev/null
+ping -c1 -W1 `grep -A1 "Host p" ~/.ssh/config|sed 1d|cut -d ' ' -f 2` &> /dev/null
 if [ "$?" = "0" ]; then
-sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 admin@192.168.11.1:/media/DTSE9 ~/MyDatabase/
-sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 admin@192.168.11.1:/media/AiCard_02/Share ~/Share
+sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 \
+p:/media/DTSE9 ~/MyDatabase
 fi
