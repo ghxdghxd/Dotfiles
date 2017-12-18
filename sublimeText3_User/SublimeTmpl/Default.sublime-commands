@@ -4,7 +4,7 @@
         "args": {"type": "bash"}
     },
     {
-        "caption": "Tmpl: Create r", "command": "sublime_tmpl",
-        "args": {"type": "r"}
+        "caption": "Tmpl: Create R", "command": "sublime_tmpl",
+        "args": {"type": "R"}
     }
 ]
