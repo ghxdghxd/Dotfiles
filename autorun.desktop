@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=startup
+GenericName=startup
+Comment=Start these up at login
+Exec=~/dotfiles/autorun.sh
+Terminal=False
+Type=Application
+X-GNOME-Autostart-enabled=true
