@@ -1,9 +1,9 @@
-# @Author  : Jintao Guo
+# @Author  : JtGuo
 # @Email   : guojt-4451@163.com
-# @Date    : 2017-10-19 14:33:15
+# @Date    : 2017-012-12 14:33:15
 
 # Path to your oh-my-zsh installation.
-ZSH=$HOME/.oh-my-zsh
+ZSH=/share/apps/oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME="best"
@@ -12,8 +12,7 @@ ZSH_THEME="best"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-plugins=(autojump)
+plugins=(git autojump)
 
 # User configuration
 
@@ -64,17 +63,45 @@ alias df=' df -h'
 alias dh=' du -h'
 alias da=' du -sh'
 alias d1=' du -h --max-depth=1'
-# ssh
-alias mhpc='sshfs -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/service/hpc '
-alias mgate='sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 $username@$IP:~ ~/service/gate'
+
+# sshfs
+function mgate {
+    ping -c1 -W1 `grep -A1 "Host l" ~/.ssh/config|sed 1d|cut -d ' ' -f 2` &> /dev/null
+    if [ "$?" = "0" ]; then
+        sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 \
+        l:/home/`grep -A2 "Host l" ~/.ssh/config|sed 1,2d|cut -d ' ' -f 2` ~/service/gate
+    fi
+}
+
+function mhpc {
+    ping -c1 -W1 `grep -A1 "Host a" ~/.ssh/config|sed 1d|cut -d ' ' -f 2` &> /dev/null
+    if [ "$?" = "0" ]; then
+        sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 \
+        a:/home/`grep -A2 "Host a" ~/.ssh/config|sed 1,2d|cut -d ' ' -f 2` ~/service/hpc
+    fi
+}
+
+function mdata {
+    ping -c1 -W1 `grep -A1 "Host p" ~/.ssh/config|sed 1d|cut -d ' ' -f 2` &> /dev/null
+    if [ "$?" = "0" ]; then
+        sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 \
+        p:/media/DTSE9 ~/MyDatabase
+    fi
+}
+
+function mgk {
+sshfs -o transform_symlinks -o reconnect -o follow_symlinks -o uid=1000 -o gid=1000 -o umask=022 \
+j:/home/`grep -A2 "Host j" ~/.ssh/config|sed 1,2d|cut -d ' ' -f 2` ~/service/genokon
+}
+
 # other
 alias less='less -S'
 alias scpr='rsync -vPe ssh'
 alias pwd=' pwd -P'
 
-#
+#python
 alias http='python -m SimpleHTTPServer 8989'
-alias jupyter='jupyter notebook'
+alias nbserver='ipython notebook --profile=nbserver'
 alias httpy='python -m SimpleHTTPServer'
 
 alias p=' ps aux | grep'
@@ -150,10 +177,9 @@ printf '%-3s : %s\n' "lv" "sort by numbers within text"
 }
 
 # PATH
-#export PATH=
+export PATH=/share/apps/R-3.4.2/bin:/share/apps/anaconda3/bin:/share/apps/Zotero_linux-x86_64:$PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 
