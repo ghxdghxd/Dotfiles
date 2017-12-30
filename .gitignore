@@ -1,5 +1,5 @@
 # Ignore cache
-*.cache/
-*.last-run/
-*.merged-ca-bundle/
-*.user-ca-bundle/
+*cache/
+*last-run/
+*merged-ca-bundle/
+*user-ca-bundle/
