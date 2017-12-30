@@ -1,4 +1,5 @@
 # Ignore cache
-*cache/
-sublime-text-3/Packages/User/*run/
-*bundle/
+/sublime-text-3/Packages/User/*
+!/sublime-text-3/Packages/User/*.sublime-settings
+!/sublime-text-3/Packages/User/snippets
+!/sublime-text-3/Packages/User/SublimeTmpl
