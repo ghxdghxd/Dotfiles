@@ -1,10 +1,10 @@
 [
     {
-        "caption": "Tmpl: Create bash", "command": "sublime_tmpl",
-        "args": {"type": "bash"}
-    },
-    {
         "caption": "Tmpl: Create R", "command": "sublime_tmpl",
         "args": {"type": "R"}
-    }
+    },
+    {
+        "caption": "Tmpl: Create shellscript", "command": "sublime_tmpl",
+        "args": {"type": "shellscript"}
+    },
 ]

@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+DOC = "KEGG analysis"
+
+library("optparse")
+
+option_list = list(
+  make_option(c("-i", "--input"), type="character", default=NULL,
+              help="input genes names", metavar="file",dest="gene"),
+  make_option(c("-b", "--background"), type="character", default=NULL,
+              help="background genes", metavar="file", dest="background"),
+  make_option(c("-o", "--out"), type="character", default=NULL,
+              help="output KEGG result", metavar="file", dest="output")
+)
+
+opt_parser = OptionParser(usage = "usage: %prog [options]", option_list = option_list, add_help_option = TRUE, prog = NULL, description = "", epilogue = "")
+
+opt = parse_args(opt_parser, print_help_and_exit=TRUE)
+
+if (length(opt)==1){
+  print_help(opt_parser)
+  q()
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>getargs</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.r</scope>
+</snippet>

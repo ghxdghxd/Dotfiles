@@ -1,7 +1,16 @@
 {
+    "R": {
+        "syntax": "Packages/R/R.tmLanguage",
+        "extension": "R"
+    },
+    "shellscript": {
+        "syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
+        "extension": "sh"
+    },
     "date_format" : "%Y-%m-%d %H:%M:%S",
     "attr": {
         "author": "JTGuo",
         "email": "guojt-4451@163.com",
     }
 }
+
