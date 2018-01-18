@@ -1,6 +1,10 @@
 <snippet>
     <content><![CDATA[
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> b2ccaf5b5e2dbd657b80485e35410fcb5d4dc4ed
 LocationOfThisScript = function(){
 # Function LocationOfThisScript returns the location of this .R script (may be needed to source other files in same dir)
     this.file = NULL
