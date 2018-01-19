@@ -1,9 +1,9 @@
 <snippet>
     <content><![CDATA[
 getScriptLocation = function(){
-cmd.args = commandArgs(trailingOnly = FALSE)
-cmd.args = cmd.args[grep("--file=", cmd.args)]
-return(dirname(gsub("--file=", "", cmd.args)))
+    cmd.args = commandArgs(trailingOnly = FALSE)
+    cmd.args = cmd.args[grep("--file=", cmd.args)]
+    return(dirname(gsub("--file=", "", cmd.args)))
 }
 
 locateDir = getScriptLocation()
