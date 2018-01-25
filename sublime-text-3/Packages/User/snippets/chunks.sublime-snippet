@@ -1,0 +1,31 @@
+<snippet>
+    <content><![CDATA[
+
+import pandas as pd
+
+reader = pd.read_csv(${1:input}, compression="gzip", comment="#", sep="\t", iterator=True, header=None)
+loop = True
+chunkSize = 100000
+chunks = []
+while loop:
+    try:
+        df = reader.get_chunk(chunkSize)
+        df.columns = head
+        df.CHROM = df.CHROM.astype('object')
+        df1 = df.filter(items=item)
+        df1["ID"] = df1.apply(lambda x: ":".join([str(x.CHROM), str(x.POS), x.REF, x.ALT]), 1)
+        df2 = pd.merge(loci, df1, on='ID')
+        chunks.append(df2)
+    except StopIteration:
+        loop = False
+        print("Iteration is stopped")
+
+out_df = pd.concat(chunks, ignore_index=True)
+out_df.to_csv(${2:out}, sep="\t", index=None)
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <!-- <tabTrigger>chunks</tabTrigger> -->
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>
