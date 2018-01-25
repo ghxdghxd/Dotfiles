@@ -1,5 +1,5 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 
 import pandas as pd
 
@@ -22,10 +22,9 @@ while loop:
 
 out_df = pd.concat(chunks, ignore_index=True)
 out_df.to_csv(${2:out}, sep="\t", index=None)
-
 ]]></content>
-    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <!-- <tabTrigger>chunks</tabTrigger> -->
-    <!-- Optional: Set a scope to limit where the snippet will trigger -->
-    <!-- <scope>source.python</scope> -->
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>chunk</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.python</scope>
 </snippet>
