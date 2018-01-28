@@ -64,6 +64,8 @@ alias dh=' du -h'
 alias da=' du -sh'
 alias d1=' du -h --max-depth=1'
 
+alias hd='hexo clean;hexo genarate;hexo deploy'
+
 # sshfs
 function mgate {
     ping -c1 -W1 `grep -A1 "Host l" ~/.ssh/config|sed 1d|cut -d ' ' -f 2` &> /dev/null
