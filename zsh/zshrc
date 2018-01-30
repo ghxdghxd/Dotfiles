@@ -118,17 +118,6 @@ alias qn='qstat -n'
 alias qq='qstat -q'
 alias qf='qstat -f'
 
-# Git
-alias ga="git add"
-alias gm="git commit -m"
-alias gc="git checkout"
-alias gs="git status"
-alias gp='git push'
-alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit "
-alias gb='git branch'
-alias gd='git diff' #显示缓存变化
-alias ghard='git reset --hard'
-
 # check the XX levels size of a directory below the command line argument
 function dm {
     if [ -z $1]; then
