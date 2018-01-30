@@ -121,7 +121,7 @@ alias qf='qstat -f'
 # Git
 alias ga="git add"
 alias gm="git commit -m"
-alias gc= "git checkout"
+alias gc="git checkout"
 alias gs="git status"
 alias gp='git push'
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit "
