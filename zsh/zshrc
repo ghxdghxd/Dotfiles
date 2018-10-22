@@ -169,7 +169,7 @@ printf '%-3s : %s\n' "lv" "sort by numbers within text"
 }
 
 # PATH
-export PATH=/share/apps/R-3.4.2/bin:/share/apps/anaconda3/bin:/share/apps/Zotero_linux-x86_64:$PATH
+export PATH=/share/apps/Stata14Linux64:/share/apps/R-3.4.2/bin:/share/apps/anaconda3/bin:/share/apps/Zotero_linux-x86_64:$PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
