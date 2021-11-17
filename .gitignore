@@ -1,7 +1,3 @@
 # Ignore cache
 # 忽略所有
-/sublime-text-3/Packages/User/*
-# 但不忽略以下
-!/sublime-text-3/Packages/User/*.sublime-settings
-!/sublime-text-3/Packages/User/snippets
-!/sublime-text-3/Packages/User/SublimeTmpl
+/oh-my-bash/*
